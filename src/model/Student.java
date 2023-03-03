@@ -6,6 +6,10 @@ public class Student {
     private String name, lastName;
     private Faculty faculty;
     private String personCode;
+    //static to be stable and it does not matter how many students are created
+    //students creation does not depend on this variable
+    private static long studentCounter = 0;
+
 
     //2. getters and setters
     public long getId(){
@@ -20,29 +24,48 @@ public class Student {
     //ToDo take a look regex101.com
     /// [A-ZĀĒŖŪĪĻĶĢŠŽČŅ]{1}[a-zēŗūīļķģšāžčņ]+[ ]?([A-ZĀĒŖŪĪĻĶĢŠŽČŅ]{1}[a-zēŗūīļķģšāžčņ]+)?
     public void setName(String inputName) {
-        if (inputName.matches("[A-ZĀĒŖŪĪĻĶĢŠŽČŅ]{1}[a-zēŗūīļķģšāžčņ]+[ ]?([A-ZĀĒŖŪĪĻĶĢŠŽČŅ]{1}[a-zēŗūīļķģšāžčņ]+)?") ){
+        if (inputName != null && inputName.matches("[A-ZĀĒŖŪĪĻĶĢŠŽČŅ]{1}[a-zēŗūīļķģšāžčņ]+[ ]?([A-ZĀĒŖŪĪĻĶĢŠŽČŅ]{1}[a-zēŗūīļķģšāžčņ]+)?") )
             name = inputName;
-        } else {
+        else
             name = "Unknown";
-        }
     }
     public String getLastName() {
         return lastName;
     }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(String inputLastName) {
+        if(inputLastName != null && inputLastName.matches("[A-ZĀĒŖŪĪĻĶĢŠŽČŅ]{1}[a-zēŗūīļķģšāžčņ]+([-][A-ZĀĒŖŪĪĻĶĢŠŽČŅ]{1}[a-zēŗūīļķģšāžčņ]+)?"))
+            lastName = inputLastName;
+        else
+            lastName = "Unknown";
+
     }
     public Faculty getFaculty() {
         return faculty;
     }
-    public void setFaculty(Faculty faculty) {
-        this.faculty = faculty;
+    public void setFaculty(Faculty inputFaculty) {
+        if(inputFaculty != null)
+            faculty = inputFaculty;
+        else
+            faculty = Faculty.UNKNOWN;
     }
     public String getPersonCode() {
         return personCode;
     }
-    public void setPersonCode(String personCode) {
-        this.personCode = personCode;
+    //old person code ([1-9]{1}[0-9]{5}[-][1-9]{1}[0-9]{4})
+    //new person code ([32]{1}[0-9]{9})
+    //Todo try to combine old and new regex
+    public void setPersonCode(String inputPersonCode) {
+        if (inputPersonCode != null && inputPersonCode.matches("[1-9]{1}[0-9]{5}[-][1-9]{1}[0-9]{4}"))
+            personCode = inputPersonCode;
+        else
+            personCode = "000000-00000";
+    }
+
+    public static long getStudentCounter() {
+        return studentCounter;
+    }
+    public void setId(){
+        id = studentCounter++;
     }
 
     //3. constructors
