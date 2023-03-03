@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Student {
     //1. variables
     private long id;
@@ -43,10 +45,11 @@ public class Student {
         return faculty;
     }
     public void setFaculty(Faculty inputFaculty) {
-        if(inputFaculty != null)
-            faculty = inputFaculty;
-        else
-            faculty = Faculty.UNKNOWN;
+//        if(inputFaculty != null)
+//            faculty = inputFaculty;
+//        else
+//            faculty = Faculty.UNKNOWN;
+        faculty = Objects.requireNonNullElse(inputFaculty, Faculty.UNKNOWN);
     }
     public String getPersonCode() {
         return personCode;
@@ -87,5 +90,20 @@ public class Student {
     }
 
     //4. toString
+    public String toString() {
+        return "" + id + ": " + name + " " + lastName + ", " + personCode + ", " + faculty;
+    }
+
+//    generated:
+//    public String toString() {
+//        return "Student{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", lastName='" + lastName + '\'' +
+//                ", faculty=" + faculty +
+//                ", personCode='" + personCode + '\'' +
+//                '}';
+//    }
+
     //5. additional functions
 }
