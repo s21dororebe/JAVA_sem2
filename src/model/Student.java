@@ -69,6 +69,23 @@ public class Student {
     }
 
     //3. constructors
+    //no args
+    public Student(){
+        setId();
+        setName("Unknown");
+        setLastName("Unknown");
+        setPersonCode("000000-00000");
+        setFaculty(Faculty.UNKNOWN);
+    }
+    //args constructor
+    public Student(String name, String lastName, String personCode, Faculty faculty){
+        setId();
+        setName(name);
+        setLastName(lastName);
+        setPersonCode(personCode);
+        setFaculty(faculty);
+    }
+
     //4. toString
     //5. additional functions
 }
