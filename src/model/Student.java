@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Student {
     //1. variables
     private long id;
-    private String name, lastName;
+    private String name, surname;
     private Faculty faculty;
     private String personCode;
     //static to be stable and it does not matter how many students are created
@@ -20,6 +20,7 @@ public class Student {
     public void setId(long id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
@@ -31,16 +32,17 @@ public class Student {
         else
             name = "Unknown";
     }
-    public String getLastName() {
-        return lastName;
-    }
-    public void setLastName(String inputLastName) {
-        if(inputLastName != null && inputLastName.matches("[A-ZĀĒŖŪĪĻĶĢŠŽČŅ]{1}[a-zēŗūīļķģšāžčņ]+([-][A-ZĀĒŖŪĪĻĶĢŠŽČŅ]{1}[a-zēŗūīļķģšāžčņ]+)?"))
-            lastName = inputLastName;
-        else
-            lastName = "Unknown";
 
+    public String getSurame() {
+        return surname;
     }
+    public void setSurname(String inputSurname) {
+        if(inputSurname != null && inputSurname.matches("[A-ZĀĒŖŪĪĻĶĢŠŽČŅ]{1}[a-zēŗūīļķģšāžčņ]+([-][A-ZĀĒŖŪĪĻĶĢŠŽČŅ]{1}[a-zēŗūīļķģšāžčņ]+)?"))
+            surname = inputSurname;
+        else
+            surname = "Unknown";
+    }
+
     public Faculty getFaculty() {
         return faculty;
     }
@@ -51,6 +53,7 @@ public class Student {
 //            faculty = Faculty.UNKNOWN;
         faculty = Objects.requireNonNullElse(inputFaculty, Faculty.UNKNOWN);
     }
+
     public String getPersonCode() {
         return personCode;
     }
@@ -76,22 +79,21 @@ public class Student {
     public Student(){
         setId();
         setName("Unknown");
-        setLastName("Unknown");
+        setSurname("Unknown");
         setPersonCode("000000-00000");
         setFaculty(Faculty.UNKNOWN);
     }
     //args constructor
-    public Student(String name, String lastName, String personCode, Faculty faculty){
+    public Student(String name, String surname, String personCode, Faculty faculty){
         setId();
         setName(name);
-        setLastName(lastName);
+        setSurname(surname);
         setPersonCode(personCode);
         setFaculty(faculty);
     }
-
     //4. toString
     public String toString() {
-        return "" + id + ": " + name + " " + lastName + ", " + personCode + ", " + faculty;
+        return "" + id + ": " + name + " " + surname + ", " + personCode + ", " + faculty;
     }
 
 //    generated:
@@ -99,7 +101,7 @@ public class Student {
 //        return "Student{" +
 //                "id=" + id +
 //                ", name='" + name + '\'' +
-//                ", lastName='" + lastName + '\'' +
+//                ", surname='" + surname + '\'' +
 //                ", faculty=" + faculty +
 //                ", personCode='" + personCode + '\'' +
 //                '}';
